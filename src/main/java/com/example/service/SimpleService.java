@@ -67,7 +67,7 @@ public class SimpleService {
 	}
 	
 	public String generateToken(String username, String password) {
-		String token = DigestUtils.sha256Hex(username + password);
+		String token = DigestUtils.sha256Hex(DigestUtils.sha256Hex(username) + DigestUtils.sha256Hex(password));
 		tokens.add(token);
 		return token;
 	}
