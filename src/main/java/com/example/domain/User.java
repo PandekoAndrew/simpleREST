@@ -3,7 +3,7 @@ package com.example.domain;
 public class User {
 	private String username;
 	private String password;
-	enum Role {ADMIN, USER};
+	public enum Role {ADMIN, USER};
 	private Role role;
 	
 	public User(String username, String password, Role role) {
