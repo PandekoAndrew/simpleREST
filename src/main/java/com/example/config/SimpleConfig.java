@@ -8,16 +8,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.example.filter.SimpleInterceptor;
 
 @Configuration
-public class SimpleConfig implements WebMvcConfigurer{
+public class SimpleConfig implements WebMvcConfigurer {
 	private SimpleInterceptor interceptor;
-	
+
 	@Autowired
 	public SimpleConfig(SimpleInterceptor interceptor) {
 		this.interceptor = interceptor;
 	}
-	
+
 	@Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptor);
-    }
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(interceptor);
+	}
 }

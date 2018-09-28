@@ -16,7 +16,7 @@ import com.example.service.SimpleService;
 public class SimpleController {
 
 	private static final String SAMPLE_TEXT = "sample text";
-	private SimpleService service;
+	private final SimpleService service;
 
 	@Autowired
 	public SimpleController(SimpleService service) {
@@ -32,27 +32,27 @@ public class SimpleController {
 	public String user(@RequestParam(value = "username", defaultValue = "") String username,
 			@RequestParam(value = "password", defaultValue = "") String password,
 			@CookieValue(value = "foo", defaultValue = "") String token, HttpServletResponse response) {
-		
-		if(!username.equals("") && !password.equals("")) {
-			if(service.checkUser(username, password)) {
+
+		if (!username.equals("") && !password.equals("")) {
+			if (service.checkUser(username, password)) {
 				response.addCookie(new Cookie("foo", service.generateToken(username, password)));
 				return SAMPLE_TEXT;
 			}
 			throw new ForbiddenException();
 		}
-		if(service.checkToken(token)) {
+		if (service.checkToken(token)) {
 			return SAMPLE_TEXT;
 		}
 		throw new ForbiddenException();
 	}
-	
+
 	@RequestMapping("/admin")
 	public String admin(@RequestParam(value = "username", defaultValue = "") String username,
 			@RequestParam(value = "password", defaultValue = "") String password) {
-		if(service.checkAdmin(username, password)) {
+		if (service.checkAdmin(username, password)) {
 			return SAMPLE_TEXT;
 		}
-		
+
 		throw new ForbiddenException();
 	}
 }

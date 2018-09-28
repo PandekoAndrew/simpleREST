@@ -19,7 +19,7 @@ public class SimpleInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-		
+
 		stopWatch = new StopWatch(request.getRequestURI());
 		stopWatch.start();
 		return true;
@@ -30,7 +30,7 @@ public class SimpleInterceptor extends HandlerInterceptorAdapter {
 		stopWatch.stop();
 		String uri = request.getRequestURI();
 		StringBuilder stringBuilder = new StringBuilder();
-		if(uri.equals("/free") || uri.equals("/user")) {
+		if (uri.equals("/free") || uri.equals("/user")) {
 			stringBuilder.append("ID: ").append(UUID.randomUUID().toString()).append(" ");
 		}
 		stringBuilder.append(stopWatch.shortSummary());
